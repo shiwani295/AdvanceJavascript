@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>Namaste javascript task 9 call apply blind </h1>
+        <p id="demo"></p>
+    </body>
+</html>
+<script type="text/javascript">
+//Write a function and use 'call' to call the function
+/*
+var obj={
+    firstName:"shivani",
+    lastName:"tiwari",
+    //num:2
+};
+var addToThis=function(){
+    return this.firstName + " " + this.lastName ;
+};
+console.log(addToThis.call(obj));//functionname call(obj,functionargument)
+*/
+
+
+///////another method 
+/*
+var obj={
+    firstName:"shivani",
+    lastName:"tiwari",
+    fullName:function(){
+        return this.firstName + " " + this.lastName ;
+    }
+}
+   // This will return "shivani shivani":
+    //console.log(obj.fullName());  
+   //document.getElementById("demo").innerHTML = obj.fullName();
+*/
+
+/////////////////Write a program using apply
+/*var obj={
+    num:2
+};
+var addToThis=function(a,b,c){
+    return this.num + a + b + c ;//it will return 8
+};
+var arr=[1,2,3]
+console.log(addToThis.apply(obj,arr));//functionname call(obj,functionargument)
+*/
+
+
+/////////////////////// Write a program using bind
+/*`
+var obj={                         // this is the object
+    num:2
+};
+var addToThis=function(a,b,c){    // this is the function 
+    return this.num + a + b + c ; //it will return 8
+};
+var bound=addToThis.bind(obj);    // console.log(bound);//it will return addtothis function 
+console.log(bound(1,2,3));        //its as an parmenter for addtothis fuction argument
+//console.dir(bound);
+*/
+
+////////////////////// Create a new object called Student with age 20 , write a function which prints the age of the student from the student object.
+/*
+var Student ={age:20};
+var printStudentAge=function(){
+    return this.num;
+}
+var bound=printStudentAge.bind(Student);
+console.log(bound);//it will return th printStudentAge() function
+*/
+
+/////////////////////////////////Curring Function //////////////////////////////////////////
+/*we make acopy of multiply method and we create multiplyByTwo or more method by it */
+ //let multiply=function(x,y){
+  //  console.log(x*y);
+ //}
+ //let multiply=function(y){
+  //  let x=2;
+  //  console.log(x*y);
+ //}
+
+// let multiplyByTwo=multiply.bind(this,2,4);
+ //multiplyByTwo(5);
+ //let multiplyByThree=multiply.bind(this,3);
+ //multiplyByThree(5);
+ //let multiplyByTwo=multiply.bind(multiply);
+ //multiplyByTwo(2,5);
+
+////////////using function clouser
+let multiply=function(x){
+    return function (y){
+        console.log(x * y);
+    }
+}
+let multiplyByTwo=multiply(2);
+ multiplyByTwo(5);
+
+//multiply 3
+let multiplyByThree=multiply(3);
+ multiplyByThree(5);
+</script>
