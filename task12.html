@@ -1,0 +1,227 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>Namaste javascript task 12 </h1>
+        <p id="demo"></p>
+    </body>
+</html>
+<script type="text/javascript">
+//Question 1-----What are the different type of usage of this as shown by the youtuber. List all of them
+ /*Answer-1) this inside the global space
+        2) this inside an object
+        3) this' inside a method
+        4) this inside a function
+        5) this by we use "call" function
+        6) this inside an inner function
+        7) this inside a class
+        8) this inside a constructor
+*/
+
+
+
+//Question 2-----After listing all of them write a small code snippet for everyone of them and paste the code here.
+
+/*******************this inside the global space*********************/
+
+/*
+this.table='window table';                        // this is a public fuction or keyword
+console.log(this.table);                          // output---- window table
+
+this.garage={
+    table:'garage table'
+}
+console.log(this.garage.table);                   //output--- garage table
+//console.log(this.garage);                       //it will give you fuction of garage
+//console.log(window.garage.table)                //output--- garage table
+
+*/
+
+/*******************this inside an object****************************/
+
+/*
+let johnRoom={                                   // this is a private object                            
+    table:'johns table'
+};
+console.log(johnRoom.table);                     // output----johns table
+//console.log(this.johnRoom.table);              //it will give you error you cant use this.johsone.table     
+
+*/
+
+/*******************this' inside a method(cleanTable)****************************/
+//here we are using private object with cleanTable method
+
+/*1) with private object
+let johnRoom={                                     // this is a private object                            
+    table:'johns table',
+    cleanTable(){                                  // this cleanTable is a method of johnsRoom(here we use this inside johnsRoom private object)
+        console.log('cleaning' +' '+ this.table +' ')
+    }
+};
+johnRoom.cleanTable();                             // output----cleaning johns table
+
+//2) with public object
+
+this.garage ={                                     //this is pullic keyword thats by any one can use 
+    table:'garage table',
+    cleanTable(){
+        console.log('cleaning' +' '+ this.table +' ')  //output-----cleaning garage table 
+    }
+};
+this.garage.cleanTable(); 
+*/
+
+
+/*******************this inside a function***************************/
+
+/*
+const cleanTable=function(){ 
+    this.table='inside cleanTable function ';                       // this cleanTable is a function      
+    console.log('cleaning' +' '+ this.table +' ')                   //cleaning inside cleanTable function  
+    };
+cleanTable();
+*/
+
+/*******************this by we use "call" function*******************/
+
+/*
+'use strict';
+this.table='window table';
+const cleanTable=function(){                               // this cleanTable is a function      
+    console.log('cleaning' +' '+ this.table +' ')
+    };
+cleanTable.call(this);                                     // output---- cleaning window table || BY USING CALL FUNCTION  
+*/
+
+
+/*******************this inside an inner function********************/
+
+/*
+'use strict';
+this.table='window table';
+const cleanTable=function(soap){    
+    //inside the function 
+    const innerFunction=(_soap)=>{
+        console.log("cleaning"+" "+this.table + " using "+_soap);
+    }
+    innerFunction(soap);
+};
+cleanTable.call(this,'soap');
+*/
+
+/*******************this inside a constructor************************/
+
+/*
+this.garage ={                   
+    table:'garage table',       
+};
+//this is construction like this (this is best way as compare to cleanTable)
+let createRoom=function(name){
+    this.table= name +" "+'Room'
+    
+}
+
+createRoom.prototype.cleanTable=function(soap){
+    console.log("cleaning1"+" "+this.table + " using "+soap);
+}
+const jillsRoom=new createRoom('jill');
+const johnsRoom=new createRoom('john');
+
+jillsRoom.cleanTable('tide soap');
+johnsRoom.cleanTable('tidessss soap')
+//cleanTable.call(this.garage,'some soap');
+//cleanTable.call(jillsRoom,'some2 soap');
+//cleanTable.call(johnsRoom,'some3 soap')
+
+*/
+
+
+
+/*******************this inside a class*****************************/
+
+/*
+class createRoom{
+    constructor(name){
+        this.table=name+' table'; 
+    }
+    //another method inside class
+    cleanTable(soap){
+        console.log("cleaning1"+" "+this.table + " using "+soap);
+    }
+ }
+ const jillsRoom=new createRoom('jill');
+ const johnsRoom=new createRoom('john');
+
+ jillsRoom.cleanTable('tide soap');
+ johnsRoom.cleanTable('tidessss soap')
+
+*/
+
+//Question 3-----Design pattern problem - How will you design a Student class which stores the name , age , phone number, board marks of each student. Make a constructor to initialize the values.
+
+/*
+class student{
+    constructor(name, age, phone_no, marks){
+        this.name=name,
+        this.age=age,
+        this.phone_no=phone_no,
+        this.marks=marks
+    }
+
+    checkMarks(){
+       if(this.marks>40){
+        console.log(this.name + " is eligiable");
+       }else{
+        console.log(this.name + " is not-eligiable");
+       }
+        
+    }
+    
+}
+const student1=new student('jill',22,7215784578,100);
+const student2=new student('ram',20,1234567412,98);
+const student3=new student('shyam',23,7894567894,39);
+const student4=new student('radha',25,4567894258,27);
+const student5=new student('shondarya',26,7412589678,88)
+
+//student1.checkMarks();
+//student4.checkMarks();
+//student1.checkMarks();
+
+*/
+
+//Question 4-----Write a function to check whether the student is egligible or not for college. If board marks > 40 -> egligible , if less than 40 -> not egligible.Write a function to check this.
+//answer in question 3 
+
+//Question 5-----Create 5 students with different names and age.
+//answer in question 3 
+
+//Question 6-----Write a function which keep track of the number of students created. Have you heard of static variables. Leverage that now. Check Hints 1 if you are stuck. 
+
+
+class Student {
+    static count = 0;
+    constructor(names, age, phn_num, boardmarks) {
+        this.names = `${names}`;
+        this.age = `${age}`;
+        this.phn_num = `${phn_num}`;
+        this.boardmarks = `${boardmarks}`;
+        Student.countStudent();
+
+    }
+
+    static countStudent() {
+        return (Student.count++)
+    }
+
+}
+
+
+const student1 = new Student('Chirag', 22, 7067345600, 100);
+const student2 = new Student('Ram', 20, 7067345600, 98);
+const student3 = new Student('shyam', 21, 7067345600, 39);
+const student4 = new Student('Rahul', 23, 7067345600, 27);
+const student5 = new Student('Shourya', 24, 7067345600, 88);
+console.log(Student.countStudent());
+</script>
