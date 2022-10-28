@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>Namaste javascript task 13 </h1>
+        <p id="demo"></p>
+        <Button id="clickMe">Click Here</Button>
+    </body>
+</html>
+<script type="text/javascript">
+//1)
+
+setTimeout(() => console.log('timer expired'), 5000) //third show time expired after 5000 sec 
+function x(y) {
+console.log('inside x');//first show inside x
+y();
+}
+x(function y(){
+console.log('inside y')//seconde show inside y
+})
+
+//****************************************
+//2)
+
+setTimeout(() => console.log('timer1 expired'), 1000)//fourth it will print timer1 expired
+setTimeout(() => console.log('timer2 expired'), 0)//third it will print timer2 expired
+function x(y) {
+console.log('inside x');//first it will show inside x
+y();
+}
+x(function y(){
+console.log('inside y')//second it will show inside y
+})
+
+//*****************************************
+//3)
+
+setTimeout(() => console.log('timer1 expired'), 1000)// forth  it will print timer1 expired  after 1000 sec 
+setTimeout(() => console.log('timer2 expired'), 0)// second  it will print timer2 expired  
+function x(y) {
+console.log('inside x');// first  it will print inside x  
+y();
+}
+x(function y(){
+setTimeout(() => console.log('inside y'), 0)// third  it will print inside y 
+})
+
+//******************************************
+//5)
+//Question-    Make a button and onclick of the button console.log('clicked me') like the way the youtuber does
+
+ document.getElementById("clickMe").addEventListener("click",function(){
+ console.log("Clicked Me");//when ever you will click in the button it will print button clicked Me  and also show in callback function during the debugg
+ })
+
+
+//******************************************
+//6
+//Question-    Add an event listener called DOMCONTENTLOADED , inside this add a call back function which consoles "DOM has loaded"
+document.addEventListener('DOMContentLoaded',(event) => {
+    console.log('DOM has loaded');
+});
+
+
+//7
+//Question-    What is garbage collection . Why do we need to free up memory , any idea
+
+/*ANSWER---that event listners are heavy that means they accupie more memory storage when we are  executing any code but still they have store momory space 
+this free count (or extra memory) thats by we remove addeventlisters other wise our program will slow and consume extra memmory space and call bak function
+when you remove this event listern then all th variable held by this closer will be garbage collected  
+*/
+</script>
