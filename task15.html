@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>Namaste javascript task 15 </h1>
+        
+    </body>
+</html>
+<script type="text/javascript">
+//1)
+
+//console.log('a'); //print first a then move to next line 
+
+//console.log('b'); // second print b then move to the next line 
+
+//setTimeout(() => console.log('c'), 1000) //here it will c print after 1 sec to it will move to the next line 
+
+//console.log('d') // third print d here 
+
+
+
+
+
+//2)
+//console.log("secont one ")
+
+//console.log('a'); //print first a then move to next line 
+//console.log('b'); //second print b then move to the next line 
+//setTimeout(() => console.log('c'), 0) //here it will print c  after 0 sec to it will move to the next line 
+//console.log('d') // third print d here 
+
+
+//3)
+//console.log("third  one ")
+//console.log('a'); //print first a then move to next line 
+//console.log('b'); //second print b then move to the next line 
+//setTimeout(() => console.log('e'), 1000) //fifth  print e after 1 sec  here 
+//setTimeout(() => console.log('c'), 0) // fourth print c after 0 sec here 
+//console.log('d') // third print d here 
+
+//-------------------------------------
+
+//Question1---What is the use of spread operator?
+//Ans- it will create new object as well it will also update the value ,add the value and many more below you can see the example 
+
+//------------------------------------
+
+//Question2---Give some example with object.
+//example1
+// const obj1={
+//     key1:"value1",
+//     key2:"value2"
+// }
+// //const obj2 = obj1 //obj2 is the referance of obj1 
+// const obj2 = {...obj1, key1:'value100',key3:'value3'}  //it will update key1 value and all add key3 and its value 
+// console.log(obj2); //{key1: 'value100', key2: 'value2', key3: 'value3'}
+
+//---------------------------------------
+
+//example2
+// const obj11={
+//     key1:"value11",
+//     key2:"value22"
+// }
+// const obj22 = {...obj1} //using spread operator it will not effect obj1 it will create new obj 
+// obj22.key1="value100" //this will update the value of obj11 key 1
+// console.log(obj22); //{key1: 'value1', key2: 'value2'}
+
+//Question -----Give some example with array.
+//const arr1=[1,2];
+//const arr2=[3,4];
+//const arr3=[...arr1,...arr2]
+//console.log(arr3); //output -- [1, 2, 3, 4]
+
+//array with object  --add new object with array 
+// const arr1=[{a:1},{b:2},{c:3}];
+// const arr2=[4,5];
+// const arr4={d:6}
+// const arr3=[...arr1,...arr2,{...arr4}]
+// console.log(arr3);
+//-------------
+
+
+
+function findaverageage(studentObj){
+
+    const sum=studentObj.yash+studentObj.vaibhav+studentObj.rajesh;
+    let averageAge=sum/3;
+    return averageAge;
+
+}
+studentobj = {
+	'yash': 26,
+	'vaibhav': 24,
+	'rajesh' : 25,
+	}
+
+var currentRunId = findaverageage(studentobj);
+console.log(currentRunId);
+</script> 
