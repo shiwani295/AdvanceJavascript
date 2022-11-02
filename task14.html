@@ -1,0 +1,146 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>Namaste javascript task 14 </h1>
+        <p id="demo"></p>
+        <Button id="btn">Click Here</Button>
+    </body>
+</html>
+<script type="text/javascript">
+    //mostly asked question 
+    /* 1)java script is a single synchronous threaded language 
+    2) it has one call stack it can only one thing 1 time the call stack present into javascript engine and
+       all the code of js execute inside the call stack 
+    4)
+    5)    */
+    /* EVENT LOOP----
+
+    
+    
+    */
+
+    //1) Watch uptill the 19th min and explain about how Execution context goes about executing callback function. Explain each step
+
+
+    //Example-
+    //first js read the code  one line at a time
+    //then we create a call stack where we execute GEC
+    //when is come to function a() this is function invocation that 
+    //it will run the a()  it will store inside the callstack
+    //function a(){       //it will store inside the call stack 
+    // console.log("a");  //this  will print inside the console so we have to create console so where it will print "a"
+    //}                   //when its come here then nothing to execute so we will pop out a() inside the call stack
+    //a();                //funtion invocation
+    //console.log("end");   //then when its come to this line it wil print "end" or store inside the console
+    //then jum to the next line  after "end " nothing to be execute then we 
+    //will pop GEC inside the call stack 
+    //now call stack is empty and console will print "a" and "end"
+
+    //2) When is the global execution context removed from the stack?
+    //ANSWER-the GEC will remove when nothing to extetcute in the program so we will popout the GEC 
+
+    //3)Continue watching uptill 25th min and explain how does the DOM APIs and how callback is encounter and stored in event loop and finally when is it executed
+    //ANSWER- Example
+    //console.log("start");     //first it will print "start" inside the console
+    //setTimeout(function a(){  //the settimeout is the web api so tthat the function a() will ragistered inside the web api 
+                              //after 5 min function a() willnot store  direct inside the callstack then how so this --
+                              //then after expire the time  the "cb" inside the QUEUE here Eventloop check that something inside the 
+                              //callback queue or is call stack empty then we will push "cb" function from callback queue to callbackstack 
+                              //now "cb" inside the cbstack then it quickly run the function and print "callback" which is store inside the console 
+        //console.log("callback");
+    //}, 5000);                 //it will take 5 sec the program in running then we jum to the next line 
+    //console.log("end");       // that will print "end " 
+     //when its come to this line nothing to be execute so the GEC is pop out but still setTimeout is running and callStack is emplty
+
+    //4)Continue watching uptill 27min 30 sec and explain why do we need the callback queue
+    //ANSWER- Example 
+
+    //console.log("start");    //first callstack store GEC then it will print "start" in console
+    
+    //document.getElementById("btn").addEventListener("click" ,function cb(){ // then here is eventlister is a another super power which is given by browser through the js through the webapi (dom API) 
+                                             //whenever you work which document that means fetch something from dom (html source code )
+                                             //here cb will ragistered in web api and attach the event that is click Event and move to the next  
+                                             // when someone click on the button it will store to callback Queue or someone click that button many time so that cb will store in callback QUEUE everytime
+                                             //then their is event loop which check is callback Stack in empty or not or it will check callback queue have an evelemt 
+                                             //when the cbstack is empty then store cb into cbstack from cbqueue 
+
+       // console.log("callback");
+    //});
+    //console.log("End");                     //next in this line which run by js and print "End" inside console now 
+    //in this line nothing is here so just pop the GEC from call stack 
+   
+
+    //5)Continue watching uptill 36th min. Explain how does fetch work when clubbed with cb.
+    //Answer---
+    console.log("start");                    //first it will store GEC in call stack and when its come on this line it will print "start" in console
+    setTimeout(function cbT(){               //when its come in this function so "cbT" ragistered in WebApi with 5000 sec in browser
+        console.log("CB SetTimeout");
+    }, 5000);
+ 
+    fetch("https://api.netflix.com").then(function cbF(){ //  then it move to the next line now we have a fetch function and then cbF will ragisted in the web API and the CBF will store in microtast queue and firstly microtask will complete lster cbT task will complete
+                                                          // that means cbTand cbF both are ready to execute and the event loop check that callbackstack in empty or not it it is empty so the micritask will push inside the callback stack 
+        console.log("CB netflix")                        
+    });                                                   //suppose here we have millions of lines till they running in the bacground and then we move to the next line 
+    console.log("End");                                   //this end will beprint over console the move tothe next line 
+    //here nothing to perform to in cbstack popout the GEC 
+    //so here is some task pending so first cbF will be pushed inside the stack because its inside the microtask so when they push inside the cbstack then the cbF will perform the and print "CB netflix " inside the console and then cbF will popout and th microtask in also emplty
+    //if microtask not empty that means they have something in a queueut there is nothing so move to the next that is callback Queue 
+    //inside the cbQueue cbT are available this cbT will push inside the cbstack then it will print "CB Settimeout"  
+
+    //7)What is starvation ?
+    //Answer- starvation is a processes where there is two things one is microtask and another is cbQueue -
+    // in a microtask queue some microtask available suppose these microtask create microtask itself again and again .
+    //so callback Queue never get a chance to execute becase the microtask have more priority and the cbqueue have to wait for the long time 
+    //so this whole process is called startvation  
+
+    //1)Why is a callback queue used and not a callback stack?
+    //Answer- callback Queue execute one task at a time then a previous task is finished then come to the next task 
+    // This is where your asynchronous code gets pushed to, and waits for the execution.
+    //example -
+    console.log("start");
+    console.log("br");
+    console.log("br");
+    console.log("end");
+    //it will print start and end 
+
+    //Call stack -: This is where all your javascript code gets pushed and executed one by one as the interpreter reads your program, and gets popped out once the execution is done. If your statement is asynchronous: setTimeout, ajax(), promise, or click event, then that code gets forwarded to Event table, this table is responsible for moving your asynchronous code to callback/event queue after specified time.
+    //example-
+    setTimeout(function() {
+   console.log('Message 1')
+   }, 0);
+   console.log('Message 2');
+
+   //Explain how does event loop handle async code? why does it not wait for async function ?
+
+//Answer - the code run line by line when it come to settimeout function so that function will store in cbstack and js move to the next time and print whatever is there 
+//so event loop check that the cbstack is empty or not if empty so the will perform next from cb queue 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+</script> 
