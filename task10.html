@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>Namaste javascript task 10</h1>
+        
+    </body>
+</html>
+<script type="text/javascript">
+//1)
+function y(){
+setTimeout(() => console.log(a), 1000) //the second it will give the error a is not defined after 1 sec
+console.log('Done Coding') //it will print Done Coding first  
+}
+y();
+
+//-------------------------------------------------
+
+//2
+
+function y(){
+setTimeout(() => console.log(a), 0) //the second it will give the error a is not defined after 0 sec
+console.log('Done Coding') //it will print Done Coding first  
+}
+y();
+
+//-------------------------------------------------
+
+//3
+
+function y(){
+for(var i=1;i<6;i++){ 
+setTimeout(() => console.log(i ), i * 1000)//it willprint 6 for 5 times after 1 sec because of clourse here i is pointed to the referace 
+//when the this function is run on seconde time the var i value will be 6 and as we know js will not wait anything thats byt it will print 6 again and again because the value store in the memory 
+//and when its come to i so it will print 6 
+//it happes because of i because each copy of the function spotted the same storage of i this i become 6 because the loop is continues running 
+//by that time the cb function to get a chance to execute by the time the value of i has been  because of loop 6
+//here we can solve this problem over here  why this happed how to fix this ----- very quick to fix this to use let over here let has a block scope 
+//each and every foop iteration when the loop run every time this i  is a new  variable all togeather each time set time is run 
+// this cb function has the new copy of i with it its has own copy (that means the function teated as a variable or every time it will new variable or fresh variable save it ) and it will make 5 copy of each and every function 
+//below is the example of this 
+}
+console.log('Done Coding') //it will print Done Coding first 
+}
+y();
+
+//-------------------------------------------------
+
+//4
+
+function y(){
+for(let i=1;i<6;i++){
+setTimeout(() => console.log(i ), i * 1000) //it willprint 1,2,3,4,5 for 5 times after 1 sec
+}
+console.log('Done Coding') //it will print Done Coding first 
+}
+y();
+
+//-------------------------------------------------
+//5
+const fun  = (arr)=>{
+    var count = 0;
+    return()=>{
+        console.log('hello ',arr[count])
+        count++;
+    }
+
+}
+const name = fun(["Ram","Shyam"]);
+name()
+name()
+
+
+//--------------------------------------
+
+// interviewer asked you how can i print 1,2,3,45,with out let so you just create a funcion which behave like clouser
+//example
+/*function y(){
+for(let i=1;i<6;i++){
+    function close(i){
+        setTimeout(() => console.log(i ), i * 1000) //it willprint 1,2,3,4,5 for 5 times after 1 sec
+         }
+    close(i)
+    }
+    console.log('Done Coding') //it will print Done Coding first 
+    }
+
+y();
+*/
+    </script>
