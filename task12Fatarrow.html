@@ -1,0 +1,113 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>Namaste javascript task 12 fat arrow</h1>
+        
+    </body>
+</html>
+<script type="text/javascript">
+/*()=>{}   this is fat arrow */
+/*()=>{}   this is syntax of fat arrow */
+
+'use strict';    //no use to show the errors its also use to show latest ftunctionality
+//this is the simple function 
+
+ /*var getA=function(a){
+    return a;
+ };*/
+
+//its converted to fat arrow function
+//let getA= a(here function a replace into fat arrow ) => a(return a);
+
+//example1----------- 
+//let getA= a => a;
+//console.log(getA(1));
+
+//example2---------------
+//let getA= a => a*a;
+//console.log(getA(2));
+
+//example3 ---------------
+//let square= (a) => {return a*a};  // this is better syntax  than exp1 and example 2 if the using 1 liner
+//console.log(square(3));
+
+//example4--------------- let you are not passing a and pass the value outside somewhere
+//var a=4;
+//let square= () => {return a*a} ;   //whenever you are putting a out side the fun you should be empty fun () or you can use _
+//console.log(square());
+
+//example 5----------------------
+
+//let mult= (a,b) => {return a*b} ;   //whenever you are putting a out side the fun you should be empty fun () or you can use _
+//console.log(mult(2,4));
+
+//Write the code which the youtuber writes by yourself and upload it here
+//example 6------------------- this is regular function
+//fat arrow does not have own this  so that bythey use parent this 
+/*var x=function()
+{ 
+    var that=this; //parent this 
+    this.val=1;
+    setTimeout(function(){
+        that.val++;
+        console.log(that.val);
+    },1)
+};
+var xx=new x();
+*/
+
+//example 7------------------- convert into fat arrow 
+/*
+var x=function()
+{ 
+    this.val=1;
+    setTimeout(() => {
+        this.val++;
+        console.log(this.val);
+    },1)
+};
+var xx=new x();
+
+//fat arrow function does not have any argument 
+//var x=() => {    //when you pass number of argument x=() should not empty
+//var x=(...n) => {    // n is line array
+    //console.log(n[2]) //output-3
+    //console.log(n[0])//output---1
+//};
+//x(1,2,3);
+*/
+//----------------------------------------
+
+//Q2 ad 3 of fat arrow 
+class Student {
+    constructor(names, age, phn_num, boardmarks) {
+        this.names = names
+        this.age = age
+        this.phn_num = phn_num
+        this.boardmarks = boardmarks
+    }
+    eligibleForPlacements(minAge) {
+        //console.log(this) //the fat arrow function looks at 'this' and takes it as object passed into it.
+        return (minMarks) => {
+            if (this.boardmarks > minMarks && this.age > minAge) {
+                console.log(this.names + ' is ready for placements')
+            } else {
+                console.log(this.names + ' is not ready for placements')
+            }
+        }
+    }
+}
+const student1 = new Student('Chirag', 22, 7067345600, 100);
+const student2 = new Student('Ram', 20, 7067345600, 98);
+const student3 = new Student('shyam', 21, 7067345600, 39);
+const student4 = new Student('Rahul', 23, 7067345600, 27);
+const student5 = new Student('Shourya', 24, 7067345600, 88); 
+
+student1.eligibleForPlacements(18)(40)
+student2.eligibleForPlacements(18)(40)
+student3.eligibleForPlacements(18)(40)
+student4.eligibleForPlacements(18)(40)
+student5.eligibleForPlacements(18)(40)   
+</script>
